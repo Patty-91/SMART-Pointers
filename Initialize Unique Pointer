@@ -1,0 +1,44 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <memory>
+
+using namespace std;
+
+class Person {
+public:
+
+string Name;
+int age;
+
+Person() :Person("noName", 0) {};
+Person(string name, int age) : Name{ name }, age{ age }{};
+
+};
+
+
+
+int main()
+{
+
+//HOW TO INITIALIZE THE UNIQUE POINTER
+
+//creating a managed object withou the "new" and initialize with a constructor
+unique_ptr<int> p1 = make_unique<int>(100);
+cout << *p1 << endl;
+
+//Same example with a class Obj
+unique_ptr<Person> PersonPtr = make_unique<Person>("Person 1",0);
+cout <<"Name: "<< PersonPtr->Name <<" Age: "<< PersonPtr->age << endl;
+
+//Example using auto
+auto autoPtr = make_unique<Person>("Andre", 29);
+cout <<"Name: "<< autoPtr->Name <<" Age: "<< autoPtr->age << endl;
+
+
+
+system("pause");
+return 0;
+
+}
