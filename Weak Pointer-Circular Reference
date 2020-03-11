@@ -1,0 +1,67 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <memory>
+
+using namespace std;
+
+class B; //This is a forward declaration
+
+class A {
+
+shared_ptr<B> bPtr;
+
+public:
+void setB(shared_ptr<B> &b) {
+bPtr = b;
+}
+
+A() { cout << "A Constructor" << endl; }
+~A() { cout << "A Destructor" << endl; }
+
+
+
+};
+
+
+class B {
+
+shared_ptr<A>aPtr; //MAke it weak_ptr to avoid memory leak
+public:
+void setA(shared_ptr<A> &a) {
+aPtr = a;
+}
+
+B() { cout << "B Constructor" << endl; }
+~B() { cout << "B Destructor" << endl; }
+
+};
+
+int main()
+{
+
+
+//Weak Pointer:
+// - Points to an object on the Heap
+// Does not participate on the ownership count "use_count"
+// Always created from a shared pointer
+// It's used to prevent circular reference
+
+
+{//my scope
+shared_ptr<A> a = make_shared<A>();
+shared_ptr<B> b = make_shared<B>();
+
+a->setB(b);
+b->setA(a);
+}// end of scope, should delete the pointers / Here we have memory leak without the weak pointer
+
+//if we don't have a weak pointer the destructor will not be called
+
+
+
+system("pause");
+return 0;
+
+}
