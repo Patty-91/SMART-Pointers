@@ -1,0 +1,93 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <memory>
+
+using namespace std;
+
+
+
+
+int main()
+{
+// TO USE SMART POINTERS YOU NEED TO #include<memory>
+
+
+
+//with smart pointers you can
+// * dereference
+// -> member select
+
+//But you cannot
+// do arithmetic operations (++,--)
+
+//TYPES OF SMART POINTERS:
+// - UNIQUE
+// - SHARED
+// - WEAK
+
+
+//********************************************************************
+
+//Unique Pointer:
+// - Points to an obkect on the Heap
+// it's unique, you cannot have more than one pointing to the same object
+// cannot be assigned or copied
+// Can be moved
+// When you delete it, the object gets deleted as well
+
+//Declaring a unique pointer
+
+// Unique Pointer<Points to an Integer> The name is p1 {it points to a space in the heap with the value 100 inside }
+
+
+
+{// This is a scope
+unique_ptr<int> p1{ new int {100} };
+
+cout << *p1 << endl; //print 100
+
+*p1 = 200; //change the value in the heap to 200
+
+cout << *p1 << endl; // print 200
+
+//using pointer methods
+
+
+cout << p1.get() << endl; // print the Address of the element being pointed by the unique pointer
+
+if (p1) {
+
+cout << "The pointer was initialized" << endl;
+
+}
+else cout << "Pointer is null" << endl;
+
+p1.reset(); // Set the pointer to null
+
+if (p1) {
+
+cout << "The pointer was initialized" << endl;
+
+}
+else cout << "Pointer is null" << endl;
+}
+
+//trying to copy a unique pointer
+
+vector<unique_ptr<int>> myVector{};
+
+unique_ptr<int> myPtr{ new int {100} };
+
+
+/* myVector.push_back(myPtr);*/ //ERROR! unique pointer cannot be copied to a vector
+
+myVector.push_back(move(myPtr)); // SOLVED! Move instead of copy
+
+cout << "My vector element: " << *(myVector.at(0)) << endl;
+
+system("pause");
+return 0;
+
+}
