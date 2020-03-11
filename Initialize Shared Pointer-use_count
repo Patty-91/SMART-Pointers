@@ -1,0 +1,47 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <memory>
+
+using namespace std;
+
+
+
+
+int main()
+{
+// TO USE SMART POINTERS YOU NEED TO #include<memory>
+
+//creating a shared pointer using auto keyword
+auto p1 = make_shared<int>(100);
+
+//creating using standard initialization
+shared_ptr<int>p2{p1}; //Now both pointers ponit to the same obj "100"
+
+//We can check how many pointers shares the same obj using "use_count"
+
+cout << p1.use_count() << endl; // 2 pointers
+
+p1.reset(); //make p1 null
+
+cout << p1.use_count() << endl; // 0
+cout << p2.use_count() << endl; // 1
+
+
+vector<shared_ptr<int>>myVec;
+
+myVec.push_back(p1); // shared pointers CAN be copied to a vector
+myVec.push_back(p2);
+cout << "Vector elements" << endl;
+//cout << *(myVec.at(0)) << endl; // p1 is Null
+cout << *(myVec.at(1)) << endl;
+
+
+
+
+
+system("pause");
+return 0;
+
+}
