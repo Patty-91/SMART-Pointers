@@ -1,0 +1,80 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <memory>
+
+using namespace std;
+
+
+
+
+int main()
+{
+// TO USE SMART POINTERS YOU NEED TO #include<memory>
+
+
+
+//with smart pointers you can
+// * dereference
+// -> member select
+
+//But you cannot
+// do arithmetic operations (++,--)
+
+//TYPES OF SMART POINTERS:
+// - UNIQUE
+// - SHARED
+// - WEAK
+
+
+//********************************************************************
+
+//Shared Pointer:
+// - Points to an object on the Heap
+// it's shared, you can have more than one pointing to the same object
+// Can be assigned or copied
+// Can be moved
+// Cannot manage arrays
+// you can use "use_count" to see how many pointers are pointing to a obj
+//whenever the counter is 0, the pointer is deleted
+
+
+
+
+{// This is a scope
+shared_ptr<int>mySharedPtr{new int{ 200 }};
+
+cout << *mySharedPtr << endl; //print 200
+
+*mySharedPtr = 300; //change the value in the heap to 200
+
+cout << *mySharedPtr << endl; // print 200
+
+//using pointer methods
+
+
+cout << mySharedPtr.get() << endl; // print the Address of the element being pointed by the unique pointer
+
+if (mySharedPtr) {
+
+cout << "The pointer was initialized" << endl;
+
+}
+else cout << "Pointer is null" << endl;
+
+mySharedPtr.reset(); // Set the pointer to null
+
+if (mySharedPtr) {
+
+cout << "The pointer was initialized" << endl;
+
+}
+else cout << "Pointer is null" << endl;
+}
+
+
+system("pause");
+return 0;
+
+}
