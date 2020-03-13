@@ -1,0 +1,58 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <memory>
+
+using namespace std;
+
+// EXCEPTION HANDLING IS DIVIDED BY IN THREE STEPS
+//Try - You create a block of code and Try to Execute
+//Throw - If you find an error in the coded that you're trying to run, you throw an excpetion
+//Catch - Whenever an exception is thrown you need to catch and handle
+
+
+int main()
+{
+
+
+int miles{}, gallon{}, total{};
+
+cout << "Please enter the total of Miles" << endl;
+cin >> miles;
+cout << "Please enter the total of Gallons" << endl;
+cin >> gallon;
+
+
+try { // This is the block code that we will try to execute
+
+if (gallon == 0) //if gallons is zero, we throw the zero away
+throw 0;
+
+
+total = static_cast<double>(miles) / gallon;
+
+cout << "Total miles per gallon is: " << total << endl;
+
+}
+
+catch(int &exception) { //We receive the exception by reference and store in a variable by reference
+
+cout << "We catch the: " << exception << endl;
+
+//cerr is a cout reserved to report error message
+cerr << "Sorry, you can't divide by zero" << endl;
+
+}
+
+
+
+
+//We will see this message if the program executes
+cout << "End of the program..." << endl;
+
+
+system("pause");
+return 0;
+
+}
