@@ -1,0 +1,34 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <memory>
+
+using namespace std;
+
+
+
+int main()
+{
+//Miles per gallon program
+
+int miles{}, gallon{}, total{};
+
+cout << "Please enter the total of Miles" << endl;
+cin >> miles;
+cout << "Please enter the total of Gallons" << endl;
+cin >> gallon;
+
+total = miles / gallon; //If gallons is zero the program will crash
+
+/* total = static_cast<double>(miles) / gallon; */ //if we convert to double the result will be garbage whenever you divide by zero
+
+cout << "Total miles per gallon is: " << total << endl;
+
+cout << "End of the program..." << endl;
+
+
+system("pause");
+return 0;
+
+}
