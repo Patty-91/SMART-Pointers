@@ -47,9 +47,9 @@ shared_ptr<int>mySharedPtr{new int{ 200 }};
 
 cout << *mySharedPtr << endl; //print 200
 
-*mySharedPtr = 300; //change the value in the heap to 200
+*mySharedPtr = 300; //change the value in the heap to 300
 
-cout << *mySharedPtr << endl; // print 200
+cout << *mySharedPtr << endl; // print 300
 
 //using pointer methods
 
